@@ -103,4 +103,5 @@
     <string name="open_source_licenses">Open Source-Lizenzen</string>
     <string name="view_on_github">Projekt auf GitHub anzeigen</string>
     <string name="legal">Impressum und Datenschutzerklärung</string>
+    <string name="title_edit">Bearbeiten</string>
 </resources>
