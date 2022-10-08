@@ -105,6 +105,7 @@ class DashboardFragment : Fragment() {
                                 DashboardFragmentDirections
                                     .actionDashboardFragmentToSearchConnectionFragment(
                                         stationId,
+                                        null,
                                         travelType ?: ProductType.ALL
                                     )
                             )
