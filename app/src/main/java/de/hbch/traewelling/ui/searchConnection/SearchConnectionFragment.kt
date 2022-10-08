@@ -38,6 +38,10 @@ import de.hbch.traewelling.ui.include.cardSearchStation.SearchStationCardViewMod
 import de.hbch.traewelling.ui.include.homelandStation.HomelandStationBottomSheet
 import de.hbch.traewelling.util.toShortCut
 import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 
 class SearchConnectionFragment : Fragment() {
@@ -122,10 +126,10 @@ class SearchConnectionFragment : Fragment() {
         searchStationCard = binding.searchCard
         searchStationCard.viewModel = searchStationCardViewModel
         searchStationCard.binding.card = searchStationCard
-        searchStationCard.setOnStationSelectedCallback { station ->
+        searchStationCard.setOnStationSelectedCallback { station, date ->
             searchConnections(
                 station,
-                currentSearchDate
+                date ?: currentSearchDate
             )
         }
         searchStationCard.requestPermissionCallback = { permission ->
@@ -183,10 +187,14 @@ class SearchConnectionFragment : Fragment() {
             viewModel = (this@SearchConnectionFragment).viewModel
         }
 
-        val cal = Calendar.getInstance()
-        cal.time = Date()
-        cal.add(Calendar.MINUTE, -5)
-        currentSearchDate = cal.time
+        if (args.date != null) {
+            currentSearchDate = args.date!!
+        } else {
+            val cal = Calendar.getInstance()
+            cal.time = Date()
+            cal.add(Calendar.MINUTE, -5)
+            currentSearchDate = cal.time
+        }
         searchConnections(
             binding.stationName.toString(),
             currentSearchDate

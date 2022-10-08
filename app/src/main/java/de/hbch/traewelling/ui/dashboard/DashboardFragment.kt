@@ -139,11 +139,12 @@ class DashboardFragment : Fragment() {
             currentPage = 1
             loadCheckins(currentPage)
         }
-        binding.searchCard.setOnStationSelectedCallback { station ->
+        binding.searchCard.setOnStationSelectedCallback { station, date ->
             findNavController()
                 .navigate(
                     DashboardFragmentDirections.actionDashboardFragmentToSearchConnectionFragment(
-                        station
+                        station,
+                        date
                     )
                 )
         }
@@ -155,8 +156,8 @@ class DashboardFragment : Fragment() {
             CheckInAdapter(
                 mutableListOf(),
                 loggedInUserViewModel.userId
-            ) { stationName ->
-                searchStationCard.searchConnections(stationName)
+            ) { stationName, date ->
+                searchStationCard.searchConnections(stationName, date)
             }
 
         binding.nestedScrollViewDashboard.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, _, _, _ ->

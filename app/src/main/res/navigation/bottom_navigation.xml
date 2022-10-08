@@ -66,6 +66,10 @@
             android:name="travelType"
             android:defaultValue="ALL"
             app:argType="de.hbch.traewelling.api.models.trip.ProductType" />
+        <argument
+            android:name="date"
+            app:argType="java.util.Date"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/selectDestinationFragment"
