@@ -65,7 +65,6 @@ class StatusDetailFragment : Fragment() {
                 else -> false
             }
         }
-
     }
 
     override fun onCreateView(
@@ -122,7 +121,9 @@ class StatusDetailFragment : Fragment() {
             args.statusId,
             { status ->
                 binding.status = status
-                requireActivity().addMenuProvider(menuProvider)
+                if (canAlsoCheckIntoThisConnection() || args.statusId != -1) {
+                    requireActivity().addMenuProvider(menuProvider)
+                }
             },
             { }
         )
@@ -148,11 +149,14 @@ class StatusDetailFragment : Fragment() {
             StatusDetailFragmentDirections.actionStatusDetailFragmentToEditStatusFragment(
                 status.journey.origin.name,
                 status.journey.destination.name,
+                status.journey.origin.departurePlanned,
                 status.body,
                 status.journey.line,
                 status.visibility.ordinal,
                 status.business.ordinal,
-                status.id
+                status.id,
+                status.journey.hafasTripId,
+                status.journey.origin.id
             )
         )
     }
