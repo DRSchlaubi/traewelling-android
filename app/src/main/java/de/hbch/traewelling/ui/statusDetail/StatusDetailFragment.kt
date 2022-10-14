@@ -121,7 +121,7 @@ class StatusDetailFragment : Fragment() {
             args.statusId,
             { status ->
                 binding.status = status
-                if (canAlsoCheckIntoThisConnection() || args.statusId != -1) {
+                if (isOwnConnection() || args.statusId != -1) {
                     requireActivity().addMenuProvider(menuProvider)
                 }
             },
