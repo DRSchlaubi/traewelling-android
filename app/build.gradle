@@ -24,10 +24,10 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "de.hbch.traewelling"
+        applicationId "dev.schlaubi.traewelldroidfork"
         minSdk 23
         targetSdk 33
-        versionCode 62
+        versionCode 64
         versionName "1.0.2"
 
         manifestPlaceholders = [
